@@ -272,7 +272,7 @@ function rP2() {
     ${body}
     <div class="nav-row">
       <button class="btn-ghost" onclick="backP2()" style="${p2i===0&&p2stage==='reaction'?'visibility:hidden':''}">← Back</button>
-      <span class="step-ct">${p2i+1} of 8</span>
+      <span class="step-ct">${p2i+1} of ${DATA.part2Messages.length}</span>
       <button class="btn-primary" onclick="nextP2()" ${!canNext?'disabled':''}>Next →</button>
     </div>`;
 }
