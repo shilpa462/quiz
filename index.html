@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>150 by YouLabs — Content &amp; Communication Style</title>
+<style>
+  /* ── PASTE YOUR APPS SCRIPT WEB APP URL BELOW ── */
+  /* const SUBMIT_URL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec"; */
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff;
+    --bg2: #f5f5f3;
+    --text: #1a1a18;
+    --text2: #6b6b66;
+    --text3: #a0a09a;
+    --border: rgba(0,0,0,0.12);
+    --border2: rgba(0,0,0,0.22);
+    --radius: 8px;
+    --radius-lg: 12px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a18;
+      --bg2: #242422;
+      --text: #f0f0ec;
+      --text2: #9a9a94;
+      --text3: #666660;
+      --border: rgba(255,255,255,0.12);
+      --border2: rgba(255,255,255,0.22);
+    }
+  }
+
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  .wrap { max-width: 600px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+  .brand { font-size: 13px; font-weight: 500; color: var(--text2); letter-spacing: 0.04em; margin-bottom: 2rem; }
+  .hero-title { font-size: 24px; font-weight: 500; line-height: 1.35; margin-bottom: 1rem; }
+  .hero-sub { font-size: 15px; color: var(--text2); line-height: 1.6; margin-bottom: 2rem; }
+
+  .parts-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem; }
+  .part-badge { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 7px 13px; font-size: 13px; color: var(--text2); }
+
+  .time-note { font-size: 13px; color: var(--text3); margin-bottom: 2rem; }
+
+  .btn-primary { background: var(--text); color: var(--bg); border: none; border-radius: var(--radius); padding: 12px 24px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: var(--font); display: inline-block; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .btn-ghost { background: transparent; color: var(--text); border: 0.5px solid var(--border2); border-radius: var(--radius); padding: 10px 20px; font-size: 14px; cursor: pointer; font-family: var(--font); }
+  .btn-ghost:hover { background: var(--bg2); }
+
+  .progress-wrap { height: 2px; background: var(--border); border-radius: 2px; margin-bottom: 2rem; }
+  .progress-fill { height: 2px; background: var(--text); border-radius: 2px; transition: width 0.3s; }
+
+  .q-label { font-size: 11px; color: var(--text3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem; }
+  .q-text { font-size: 18px; font-weight: 500; line-height: 1.4; margin-bottom: 1.75rem; }
+
+  .opt-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }
+  .opt-btn { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px 16px; font-size: 14px; color: var(--text); cursor: pointer; text-align: left; font-family: var(--font); line-height: 1.5; transition: border-color 0.12s; }
+  .opt-btn:hover { border-color: var(--border2); background: var(--bg2); }
+  .opt-btn.sel { border: 1.5px solid var(--text); background: var(--bg2); }
+
+  .nav-row { display: flex; align-items: center; justify-content: space-between; margin-top: 0.5rem; }
+  .step-ct { font-size: 13px; color: var(--text3); }
+
+  .check-circle { width: 48px; height: 48px; border-radius: 50%; background: var(--bg2); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 22px; color: var(--text2); }
+
+  .divider { border: none; border-top: 0.5px solid var(--border); margin: 1.5rem 0; }
+
+  /* WhatsApp */
+  .wa-outer { background: #ece5dd; border-radius: 12px; padding: 16px; margin-bottom: 1.75rem; }
+  .wa-topbar { background: #075e54; border-radius: 10px 10px 0 0; padding: 10px 14px; display: flex; align-items: center; gap: 10px; margin: -16px -16px 14px; }
+  .wa-av { width: 34px; height: 34px; border-radius: 50%; background: #128c7e; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; color: #fff; flex-shrink: 0; }
+  .wa-cn { font-size: 13px; font-weight: 500; color: #fff; }
+  .wa-cs { font-size: 11px; color: rgba(255,255,255,0.7); }
+  .wa-bubble { background: #fff; border-radius: 0 8px 8px 8px; padding: 12px 14px; max-width: 94%; }
+  .wa-txt { font-size: 13.5px; color: #1a1a1a; line-height: 1.6; }
+  .wa-time { font-size: 11px; color: #999; text-align: right; margin-top: 6px; }
+  .wa-hr { border: none; border-top: 1px solid #f0f0f0; margin: 10px 0; }
+  .wa-bm { display: flex; align-items: center; gap: 8px; padding: 3px 0; font-size: 13px; color: #1a1a1a; }
+  .wa-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .wa-dot.g { background: #25d366; }
+  .wa-dot.a { background: #f0c040; }
+  .wa-bm-val { font-weight: 600; }
+  .wa-bm-note { font-size: 11px; color: #888; margin-left: 2px; }
+  .wa-foot { font-size: 12px; color: #888; font-style: italic; margin-top: 8px; line-height: 1.5; }
+
+  .react-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
+  .react-btn { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 12px 14px; font-size: 13px; color: var(--text2); cursor: pointer; text-align: left; font-family: var(--font); line-height: 1.4; transition: border-color 0.12s; }
+  .react-btn:hover { border-color: var(--border2); background: var(--bg2); }
+  .react-btn.sel { border: 1.5px solid var(--text); color: var(--text); background: var(--bg2); }
+
+  .name-input { width: 100%; border: 0.5px solid var(--border2); border-radius: var(--radius); padding: 14px 16px; font-size: 15px; font-family: var(--font); color: var(--text); background: var(--bg); margin-bottom: 1rem; }
+  .name-input:focus { outline: none; border-color: var(--text); }
+
+  .submitting { font-size: 14px; color: var(--text2); margin-top: 1rem; }
+  .error-msg { font-size: 13px; color: #c0392b; margin-top: 0.75rem; }
+
+  .screen { display: none; }
+  .screen.on { display: block; }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+const SUBMIT_URL = "https://script.google.com/macros/s/AKfycbyT7O0SI7ISzTQ76BG8fpGY8Ta8OjfRPUI4M7SxlGUKrQFaXfQcHJ9aEAfg6zuKcF07/exec";
+
+const DATA = {
+  brand: "150 by YouLabs",
+  heroTitle: "Help us understand how you like to receive health information",
+  heroSub: "Your answers shape how we communicate with you during your 21-day journey.",
+  part1Label: "Part 1 — your communication style",
+  part2Label: "Part 2 — content that works for you",
+  timeNote: "About 5 minutes",
+  part1Complete: "Part 1 complete",
+  part1CompleteBody: "Now we'll show you some sample WhatsApp messages. React to each one as you see fit — there are no wrong answers.",
+  namePrompt: "One last thing",
+  nameSubprompt: "So we know whose responses these are.",
+  successTitle: "Submitted. Thank you.",
+  successBody: "Your inputs will help shape how 150 communicates with you during your 21-day journey. Nothing here affects your clinical results.",
+
+  part1Questions: [
+    { q: "When you get health information, how much detail do you usually want?", options: ["Just the headline — give me the key number or finding", "A short summary with a bit of context", "I want to understand the reasoning behind it", "Full depth — the more detail, the better"] },
+    { q: "How do you feel about medical or scientific terms?", options: ["Keep it plain — avoid jargon entirely", "Brief jargon is fine if it's explained", "I'm comfortable with technical terms", "I prefer technical precision — it builds trust"] },
+    { q: "When something in a health update feels concerning, what do you usually want?", options: ["Acknowledge it simply, no drama", "Explain it clearly with context", "Tell me what action to take", "I want to understand the clinical significance"] },
+    { q: "How do you feel about receiving health nudges or recommendations?", options: ["Keep them rare — only when it really matters", "A few well-chosen ones are welcome", "I like regular gentle prompts", "Send me as many useful suggestions as possible"] },
+    { q: "What tone works best for you when receiving health information?", options: ["Clinical and neutral", "Warm but professional", "Conversational and human", "Like a trusted friend who happens to be a doctor"] },
+    { q: "When you receive updates during the 21-day wait, what matters most?", options: ["Knowing the process is on track", "Learning something new about my health", "Being kept engaged and involved", "Getting early signals about what my results might show"] },
+    { q: "How often would you like to hear from 150 during the 21-day journey?", options: ["Rarely — only for important milestones", "Every few days feels right", "Every other day is fine", "Daily updates would keep me engaged"] }
+  ],
+
+  part2Messages: [
+    { type: "standard", sender: "Dr. Surabbhi Menon", sub: "150 by YouLabs", text: "Your samples reached the lab safely and processing has begun. The next 21 days are a window — not a waiting room. We'll use this time well.", time: "9:04 AM", reactions: ["This feels reassuring", "Too vague for me", "Good — I like the framing", "Feels a bit formal"] },
+    { type: "data_reveal", sender: "Dr. Surabbhi Menon", sub: "150 by YouLabs",
+      intro: "Your panel includes a VO₂ max score, [Name].",
+      biomarkers: [
+        { color: "g", label: "VO₂ max", value: "In progress", note: "" }
+      ],
+      commentary: "Most people have never seen this number on a health report. It measures how efficiently your body uses oxygen under effort — one of the strongest predictors of how you'll age.",
+      footer: "We'll walk you through yours when it's ready. 👟",
+      time: "10:30 AM",
+      reactions: ["Useful — I like knowing this in advance", "Too much detail before results are ready", "Good balance of info", "I'd rather wait and see everything at once"],
+      followupQ: null,
+      followupSub: null,
+      followupOptions: null
+    },
+
+    { type: "standard", sender: "Dr. Surabbhi Menon", sub: "150 by YouLabs", text: "Day 7 update: your metabolic panel is complete and has moved to clinical review. Inflammation markers are still processing — this batch takes a full 14 days. Everything is on schedule.", time: "9:00 AM", reactions: ["Exactly what I want", "Progress updates feel useful", "Too much process detail", "I'd prefer no updates until the end"] },
+    { type: "standard", sender: "Dr. Surabbhi Menon", sub: "150 by YouLabs", text: "One small action for today: notice how you feel at 3 PM — energy, focus, mood. It takes 10 seconds and adds context we can't get from a blood panel alone.", time: "11:00 AM", reactions: ["I'd actually do this", "Feels gimmicky to me", "Interesting — I like the idea", "Too much to ask mid-process"] },
+
+    {
+      type: "data_reveal",
+      sender: "Dr. Surabbhi Menon", sub: "150 by YouLabs",
+      intro: "Hi [Name], your body scan results are in ✅",
+      biomarkers: [
+        { color: "g", label: "Muscle mass", value: "Healthy", note: "" },
+        { color: "a", label: "Visceral fat", value: "Level 9", note: "(optimal <8)" }
+      ],
+      commentary: "Good foundation. The visceral fat is one area we'll work on — it's a key lever for how your body ages.",
+      footer: "Full report on its way. I'll message you when it's ready.",
+      time: "10:30 AM",
+      reactions: ["This is exactly what I want early", "I'd rather wait for the full report", "The colour coding makes it easy to read", "This makes me anxious before the full context"],
+      followupQ: "You see the visceral fat result is amber. What would you do next?",
+      followupSub: "Pick the one that feels most true to you.",
+      followupOptions: ["Wait for the full report — I'd rather not act on partial data", "Reply to the message asking what it means", "Search online to understand visceral fat better", "Call the 150 team for an immediate explanation", "Feel reassured enough by the commentary and move on"]
+    },
+    { type: "standard", sender: "Dr. Surabbhi Menon", sub: "150 by YouLabs", text: "Your report is ready. Dr. Menon will walk you through it in your scheduled call. A few things to know before you open it: your results will include ranges, context, and recommended next steps. Nothing in this report is a diagnosis.", time: "8:00 AM", reactions: ["Perfect — sets the right expectation", "I'd want to open it immediately", "Reassuring framing", "The disclaimer feels a bit clinical"] }
+  ]
+};
+
+let part = "intro";
+let p1i = 0, p2i = 0, p2stage = "reaction";
+let p1ans = Array(7).fill(null);
+let p2ans = Array(6).fill(null);
+let p2fu = {};
+let respName = "";
+const app = document.getElementById("app");
+
+function r() {
+  if (part === "intro") rIntro();
+  else if (part === "p1") rP1();
+  else if (part === "p1done") rP1Done();
+  else if (part === "p2") rP2();
+  else if (part === "name") rName();
+  else if (part === "done") rDone();
+}
+
+function rIntro() {
+  app.innerHTML = `
+    <p class="brand">${DATA.brand}</p>
+    <h1 class="hero-title">${DATA.heroTitle}</h1>
+    <p class="hero-sub">${DATA.heroSub}</p>
+    <button class="btn-primary" onclick="go('p1')">Start →</button>`;
+}
+
+function rP1() {
+  const q = DATA.part1Questions[p1i];
+  app.innerHTML = `
+    <div class="progress-wrap"><div class="progress-fill" style="width:${p1i/7*100}%"></div></div>
+    <p class="q-label">${DATA.part1Label}</p>
+    <p class="q-text">${q.q}</p>
+    <div class="opt-list">
+      ${q.options.map((o,i)=>`<button class="opt-btn${p1ans[p1i]===i?' sel':''}" onclick="sp1(${i})">${o}</button>`).join("")}
+    </div>
+    <div class="nav-row">
+      <button class="btn-ghost" onclick="backP1()" style="${p1i===0?'visibility:hidden':''}">← Back</button>
+      <span class="step-ct">${p1i+1} of 7</span>
+      <button class="btn-primary" onclick="nextP1()" ${p1ans[p1i]===null?'disabled':''}>Next →</button>
+    </div>`;
+}
+
+function rP1Done() {
+  app.innerHTML = `
+    <div class="check-circle">✓</div>
+    <p class="brand">${DATA.brand}</p>
+    <h1 class="hero-title">${DATA.part1Complete}</h1>
+    <p class="hero-sub">${DATA.part1CompleteBody}</p>
+    <button class="btn-primary" onclick="go('p2')">See the messages →</button>`;
+}
+
+function rP2() {
+  const m = DATA.part2Messages[p2i];
+  const pct = p2i / 8 * 100;
+  const isRev = m.type === "data_reveal";
+  const hasFollowup = isRev && m.followupQ !== null;
+  const showFU = hasFollowup && p2stage === "followup";
+
+  const bubble = isRev ? `
+    <div class="wa-outer">
+      <div class="wa-topbar"><div class="wa-av">DS</div><div><div class="wa-cn">${m.sender}</div><div class="wa-cs">${m.sub}</div></div></div>
+      <div class="wa-bubble">
+        <div class="wa-txt" style="margin-bottom:10px">${m.intro}</div>
+        <hr class="wa-hr">
+        ${m.biomarkers.map(b=>`<div class="wa-bm"><div class="wa-dot ${b.color}"></div><span style="flex:1">${b.label}</span><span class="wa-bm-val">${b.value}</span>${b.note?`<span class="wa-bm-note">${b.note}</span>`:""}</div>`).join("")}
+        <hr class="wa-hr">
+        <div class="wa-txt" style="margin-bottom:6px">${m.commentary}</div>
+        <div class="wa-foot">${m.footer}</div>
+        <div class="wa-time">${m.time} ✓✓</div>
+      </div>
+    </div>` : `
+    <div class="wa-outer">
+      <div class="wa-topbar"><div class="wa-av">DS</div><div><div class="wa-cn">${m.sender}</div><div class="wa-cs">${m.sub}</div></div></div>
+      <div class="wa-bubble"><div class="wa-txt">${m.text}</div><div class="wa-time">${m.time} ✓✓</div></div>
+    </div>`;
+
+  const body = showFU ? `
+    <p class="q-text" style="font-size:16px;margin-bottom:.75rem">${m.followupQ}</p>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:1rem">${m.followupSub}</p>
+    <div class="opt-list">
+      ${m.followupOptions.map((o,i)=>`<button class="opt-btn${p2fu[p2i]===i?' sel':''}" onclick="sfu(${i})">${o}</button>`).join("")}
+    </div>` : `
+    <p class="q-text" style="font-size:15px;margin-bottom:1rem">How does this message land for you?</p>
+    <div class="react-grid">
+      ${m.reactions.map((r,i)=>`<button class="react-btn${p2ans[p2i]===i?' sel':''}" onclick="sp2(${i})">${r}</button>`).join("")}
+    </div>`;
+
+  const canNext = isRev
+    ? (hasFollowup && p2stage === "followup" ? p2fu[p2i]!==undefined : p2ans[p2i]!==null)
+    : p2ans[p2i]!==null;
+
+  app.innerHTML = `
+    <div class="progress-wrap"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <p class="q-label">${DATA.part2Label}</p>
+    ${bubble}
+    ${body}
+    <div class="nav-row">
+      <button class="btn-ghost" onclick="backP2()" style="${p2i===0&&p2stage==='reaction'?'visibility:hidden':''}">← Back</button>
+      <span class="step-ct">${p2i+1} of 8</span>
+      <button class="btn-primary" onclick="nextP2()" ${!canNext?'disabled':''}>Next →</button>
+    </div>`;
+}
+
+function rName() {
+  app.innerHTML = `
+    <p class="brand">${DATA.brand}</p>
+    <h1 class="hero-title">${DATA.namePrompt}</h1>
+    <p class="hero-sub" style="margin-bottom:1.5rem">${DATA.nameSubprompt}</p>
+    <input class="name-input" type="text" placeholder="Your name" id="nf" value="${respName}" />
+    <br>
+    <button class="btn-primary" id="subBtn" onclick="submit()" ${!respName?'disabled':''}>Submit my responses →</button>
+    <div id="submitting" class="submitting" style="display:none">Submitting...</div>
+    <div id="errMsg" class="error-msg" style="display:none"></div>`;
+  document.getElementById("nf").addEventListener("input", function(){ respName = this.value; document.getElementById("subBtn").disabled = !respName; });
+}
+
+function rDone() {
+  app.innerHTML = `
+    <div class="check-circle">✓</div>
+    <h1 class="hero-title">${DATA.successTitle}</h1>
+    <p class="hero-sub">${DATA.successBody}</p>
+    <hr class="divider">
+    <button class="btn-ghost" onclick="restart()">Retake from the beginning</button>`;
+}
+
+function go(p) { part = p; if(p==="p2"){p2i=0;p2stage="reaction";} r(); }
+function sp1(i) { p1ans[p1i]=i; r(); }
+function sp2(i) { p2ans[p2i]=i; r(); }
+function sfu(i) { p2fu[p2i]=i; r(); }
+function backP1() { if(p1i>0){p1i--;r();} }
+function nextP1() { if(p1ans[p1i]===null)return; if(p1i<6){p1i++;r();}else{part="p1done";r();} }
+function backP2() {
+  const m = DATA.part2Messages[p2i];
+  if(m.type==="data_reveal"&&p2stage==="followup"){p2stage="reaction";r();return;}
+  if(p2i>0){p2i--;p2stage="reaction";r();}else{part="p1done";r();}
+}
+function nextP2() {
+  const m = DATA.part2Messages[p2i];
+  if(m.type==="data_reveal"){
+    if(m.followupQ !== null && p2stage==="reaction"){if(p2ans[p2i]===null)return;p2stage="followup";r();return;}
+    else{if(m.followupQ !== null && p2fu[p2i]===undefined)return;}
+  } else { if(p2ans[p2i]===null)return; }
+  if(p2i < DATA.part2Messages.length - 1){p2i++;p2stage="reaction";r();}else{part="name";r();}
+}
+function restart() { p1ans=Array(7).fill(null);p2ans=Array(6).fill(null);p2fu={};respName="";part="intro";r(); }
+
+async function submit() {
+  if(!respName) return;
+  document.getElementById("subBtn").disabled = true;
+  document.getElementById("submitting").style.display = "block";
+  document.getElementById("errMsg").style.display = "none";
+
+  const payload = { name: respName, p1: p1ans, p2: p2ans, p2followup: p2fu };
+
+  try {
+    await fetch(SUBMIT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    part = "done";
+    r();
+  } catch(err) {
+    document.getElementById("submitting").style.display = "none";
+    document.getElementById("subBtn").disabled = false;
+    document.getElementById("errMsg").style.display = "block";
+    document.getElementById("errMsg").textContent = "Something went wrong — please try again. (" + err.message + ")";
+  }
+}
+
+r();
+</script>
+</body>
+</html>
